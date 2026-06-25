@@ -1,0 +1,22 @@
+const pages=[...document.querySelectorAll('.page')];let current=0;const state={};const nextBtn=document.getElementById('next-btn'),prevBtn=document.getElementById('prev-btn');
+function init(){document.getElementById('progressDots').innerHTML=pages.map((_,i)=>`<span class="dot ${i===0?'active':''}"></span>`).join('');update();document.querySelectorAll('input[type="range"]').forEach(r=>{const o=r.parentElement.querySelector('output');o.textContent=r.value;r.addEventListener('input',()=>o.textContent=r.value)});document.querySelectorAll('.heart-picker').forEach(g=>g.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{const v=+b.dataset.value;state[g.dataset.field]=v;g.querySelectorAll('button').forEach(x=>x.classList.toggle('selected',+x.dataset.value<=v))})));document.querySelectorAll('.myth').forEach(m=>m.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{state[m.dataset.field]=b.textContent;m.querySelectorAll('button').forEach(x=>x.classList.remove('selected'));b.classList.add('selected')})));initMap();nextBtn.addEventListener('click',()=>{if(current<pages.length-1){current++;update()}});prevBtn.addEventListener('click',()=>{if(current>0){current--;update()}});document.getElementById('save-btn').addEventListener('click',saveExcel)}
+function update(){pages.forEach((p,i)=>p.classList.toggle('active',i===current));document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i<=current));document.getElementById('pageCounter').textContent=`${current+1} / ${pages.length}`;document.getElementById('chapterTitle').textContent=pages[current].dataset.title;prevBtn.style.visibility=current===0?'hidden':'visible';nextBtn.style.display=current===pages.length-1?'none':'inline-block';nextBtn.textContent=current===0?'¡Comencemos! →':current===pages.length-2?'Finalizar misión →':'Siguiente →';if(current===pages.length-1)summary()}
+
+const mapPrompts={
+  casa:{title:'🏠 Casa',prompt:'¿Qué pasa en casa? ¿Cómo te sentís ahí?'},
+  escuela:{title:'🏫 Escuela',prompt:'¿Cómo es la escuela para vos?'},
+  amistades:{title:'👥 Amistades',prompt:'¿Cómo te sentís con tus amistades?'},
+  internet:{title:'📱 Internet',prompt:'¿Qué lugar ocupa internet/redes?'},
+  cabeza:{title:'🧠 Mi cabeza',prompt:'¿Qué pasa en tu mente últimamente?'},
+  cuerpo:{title:'❤️ Mi cuerpo',prompt:'¿Cómo te sentís con tu cuerpo?'}
+};
+let activeMapPlace='casa';
+function mapField(place){return document.querySelector(`.map-storage textarea[data-place="${place}"]`)}
+function saveActiveMap(){const box=document.getElementById('mapActiveText');const field=mapField(activeMapPlace);if(box&&field)field.value=box.value}
+function openMapPlace(place){saveActiveMap();activeMapPlace=place;const info=mapPrompts[place];const box=document.getElementById('mapActiveText');if(!info||!box)return;document.getElementById('mapPlaceTitle').textContent=info.title;document.getElementById('mapPrompt').textContent=info.prompt;box.value=(mapField(place)||{}).value||'';document.querySelectorAll('.map-point').forEach(btn=>btn.classList.toggle('active',btn.dataset.place===place));box.focus({preventScroll:true})}
+function initMap(){const box=document.getElementById('mapActiveText');if(!box)return;document.querySelectorAll('.map-point').forEach(btn=>btn.addEventListener('click',()=>openMapPlace(btn.dataset.place)));box.addEventListener('input',saveActiveMap);openMapPlace(activeMapPlace)}
+
+function collect(){saveActiveMap();const data={...state};document.querySelectorAll('input[name],textarea[name]').forEach(el=>{data[el.name]=el.type==='checkbox'?(el.checked?'Sí':''):el.value});return data}
+function summary(){const d=collect();document.getElementById('summary').innerHTML=`<p><b>Nombre:</b> ${esc(d.nombre||'')}</p><p><b>Pronombres:</b> ${esc(d.pronombres||'')}</p><p><b>Misiones elegidas:</b> ${['confianza','concentracion','organizacion','sueno','relaciones','emociones','autotrato','escuela'].filter(k=>d['mision_'+k]).join(', ')}</p>`}
+async function saveExcel(){const s=document.getElementById('save-status');s.textContent='Guardando...';const res=await fetch('/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(collect())});const j=await res.json();s.textContent=j.ok?'✅ Guardado en Excel':'❌ No se pudo guardar'}
+function esc(x){return String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}init();

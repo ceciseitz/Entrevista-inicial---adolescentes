@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bienvenidx - Primera entrevista RPG</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<div class="app">
+  <header class="hud">
+    <div class="hud-left">💜 NIVEL 1</div>
+    <div class="progress" id="progressDots"></div>
+    <div class="hud-right" id="pageCounter">1 / 8</div>
+  </header>
+
+  <main class="slides">
+    <section class="page active page-welcome" data-title="Bienvenid@">
+      <div class="overlay welcome-overlay">
+        <h1>CREEMOS TU<br>HISTORIA</h1>
+        <p class="subtitle">BIENVENIDX A TU PRIMERA MISIÓN</p>
+        <p class="body-text">Hoy vamos a conocerte para entender cómo funciona tu mundo.</p>
+        <div class="ribbon">VOS SOS EXPERTX EN SER VOS ⭐</div>
+      </div>
+    </section>
+
+    <section class="page page-character" data-title="Crear personaje">
+      <div class="panel character-panel">
+        <div class="avatar-zone">
+          <div class="avatar-frame"><img src="{{ url_for('static', filename='assets/avatar_silhouette.png') }}" alt="silueta"></div>
+          <p class="mini-title">Hoy me siento</p>
+          <div class="heart-picker" data-field="mood_inicial">
+            <button type="button" data-value="1">💜</button><button type="button" data-value="2">💜</button><button type="button" data-value="3">💜</button><button type="button" data-value="4">💜</button><button type="button" data-value="5">💜</button>
+          </div>
+        </div>
+        <div class="fields-zone">
+          <h2>TU PERSONAJE</h2>
+          <label>Nombre<input name="nombre" placeholder="¿Cómo te gusta que te llamen?"></label>
+          <label>Pronombres<input name="pronombres" placeholder="¿Qué pronombres usás?"></label>
+          <label>Edad<input name="edad" type="number" min="1"></label>
+          <label>Poderes especiales<textarea name="fortalezas" placeholder="¿Qué se te da bien? ¿Qué te hace únicx?"></textarea></label>
+          <label>Cosas difíciles<textarea name="dificultades" placeholder="¿Qué está en modo misión complicada?"></textarea></label>
+          <label>Personas importantes<textarea name="personas_importantes" placeholder="¿Quiénes forman tu equipo?"></textarea></label>
+          <label>Lo que me mueve<textarea name="lo_que_me_mueve" placeholder="¿Qué te gusta hacer? ¿Qué te da alegría?"></textarea></label>
+        </div>
+      </div>
+    </section>
+
+    <section class="page page-status" data-title="Estado del personaje">
+      <div class="panel status-panel">
+        <h2>ESTADO DEL PERSONAJE</h2>
+        <p>Elegí un nivel del 0 al 10 según cómo te sentís ahora.</p>
+        <div class="stats">
+          <div class="stat" data-name="autoestima"><span>❤️</span><b>Autoestima</b><input type="range" name="autoestima" min="0" max="10" value="5"><output>5</output></div>
+          <div class="stat" data-name="energia"><span>⚡</span><b>Energía</b><input type="range" name="energia" min="0" max="10" value="5"><output>5</output></div>
+          <div class="stat" data-name="concentracion"><span>🧠</span><b>Concentración</b><input type="range" name="concentracion" min="0" max="10" value="5"><output>5</output></div>
+          <div class="stat" data-name="animo"><span>⭐</span><b>Ánimo</b><input type="range" name="animo" min="0" max="10" value="5"><output>5</output></div>
+          <div class="stat" data-name="ansiedad"><span>☁️</span><b>Ansiedad</b><input type="range" name="ansiedad" min="0" max="10" value="5"><output>5</output></div>
+          <div class="stat" data-name="sueno"><span>🌙</span><b>Sueño</b><input type="range" name="sueno" min="0" max="10" value="5"><output>5</output></div>
+          <div class="stat" data-name="felicidad"><span>🌈</span><b>Felicidad</b><input type="range" name="felicidad" min="0" max="10" value="5"><output>5</output></div>
+          <div class="stat" data-name="enojo"><span>🔥</span><b>Enojo</b><input type="range" name="enojo" min="0" max="10" value="5"><output>5</output></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page page-inventory" data-title="Inventario emocional">
+      <div class="panel inventory-panel">
+        <h2>INVENTARIO EMOCIONAL</h2>
+        <div class="two-textareas">
+          <label>⚡ Me recarga<textarea name="recarga" placeholder="Cosas que te hacen bien, te calman o te dan energía..."></textarea></label>
+          <label>🪫 Me drena<textarea name="drena" placeholder="Cosas que te cansan, sobrecargan o agotan..."></textarea></label>
+        </div>
+      </div>
+    </section>
+
+    <section class="page page-map" data-title="Mapa de mi mundo">
+      <div class="map-hotspots" aria-label="Mapa interactivo">
+        <button type="button" class="map-point active" data-place="casa" style="left:22%; top:58%;">🏠 Casa</button>
+        <button type="button" class="map-point" data-place="escuela" style="left:32%; top:29%;">🏫 Escuela</button>
+        <button type="button" class="map-point" data-place="amistades" style="left:68%; top:25%;">👥 Amistades</button>
+        <button type="button" class="map-point" data-place="internet" style="left:74%; top:48%;">📱 Internet</button>
+        <button type="button" class="map-point" data-place="cabeza" style="left:47%; top:45%;">🧠 Mi cabeza</button>
+        <button type="button" class="map-point" data-place="cuerpo" style="left:57%; top:68%;">❤️ Mi cuerpo</button>
+      </div>
+
+      <div class="map-question-card">
+        <h2 id="mapPlaceTitle">🏠 Casa</h2>
+        <p id="mapPrompt">¿Qué pasa en casa? ¿Cómo te sentís ahí?</p>
+        <textarea id="mapActiveText" placeholder="Escribí o completá junto al consultante..."></textarea>
+      </div>
+
+      <div class="map-storage" aria-hidden="true">
+        <textarea name="casa_siento" data-place="casa"></textarea>
+        <textarea name="escuela_siento" data-place="escuela"></textarea>
+        <textarea name="amistades_siento" data-place="amistades"></textarea>
+        <textarea name="internet_siento" data-place="internet"></textarea>
+        <textarea name="cabeza_siento" data-place="cabeza"></textarea>
+        <textarea name="cuerpo_siento" data-place="cuerpo"></textarea>
+      </div>
+    </section>
+
+    <section class="page page-myths" data-title="Detector de mitos">
+      <div class="panel myth-panel">
+        <h2>DETECTOR DE MITOS</h2>
+        <div class="myths">
+          <div class="myth" data-field="mito_demasiado"><b>A veces siento que soy demasiado.</b><button>Yo</button><button>Depende</button><button>No yo</button></div>
+          <div class="myth" data-field="mito_empezar_tareas"><b>Me cuesta empezar tareas.</b><button>Yo</button><button>Depende</button><button>No yo</button></div>
+          <div class="myth" data-field="mito_pensar_hablar"><b>Pienso mucho antes de hablar.</b><button>Yo</button><button>Depende</button><button>No yo</button></div>
+          <div class="myth" data-field="mito_distraigo"><b>Me distraigo con facilidad.</b><button>Yo</button><button>Depende</button><button>No yo</button></div>
+          <div class="myth" data-field="mito_comparo"><b>Me comparo con otras personas.</b><button>Yo</button><button>Depende</button><button>No yo</button></div>
+          <div class="myth" data-field="mito_no_encajo"><b>A veces siento que no encajo.</b><button>Yo</button><button>Depende</button><button>No yo</button></div>
+          <div class="myth" data-field="mito_cumplidos"><b>Me cuesta aceptar cumplidos.</b><button>Yo</button><button>Depende</button><button>No yo</button></div>
+          <div class="myth" data-field="mito_autocritica"><b>Soy muy autocríticx.</b><button>Yo</button><button>Depende</button><button>No yo</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page page-missions" data-title="Misiones">
+      <div class="panel missions-panel">
+        <h2>TUS MISIONES</h2>
+        <p>Elegí 1 o 2 misiones en las que te gustaría enfocarte.</p>
+        <div class="mission-grid">
+          <label><input type="checkbox" name="mision_confianza"> ❤️ Tener más confianza en mí</label>
+          <label><input type="checkbox" name="mision_concentracion"> 🧠 Mejorar mi concentración</label>
+          <label><input type="checkbox" name="mision_organizacion"> 🎒 Organizarme mejor</label>
+          <label><input type="checkbox" name="mision_sueno"> 🌙 Dormir mejor</label>
+          <label><input type="checkbox" name="mision_relaciones"> 👥 Mejorar mis relaciones</label>
+          <label><input type="checkbox" name="mision_emociones"> 🛡️ Manejar mis emociones</label>
+          <label><input type="checkbox" name="mision_autotrato"> ⭐ Tratarme mejor</label>
+          <label><input type="checkbox" name="mision_escuela"> 🌈 Sentirme más cómodx en la escuela</label>
+        </div>
+        <label>Misión especial<textarea name="mision_especial" placeholder="Algo importante que no esté en la lista..."></textarea></label>
+      </div>
+    </section>
+
+    <section class="page page-final" data-title="Fin de la aventura">
+      <div class="panel final-panel">
+        <h2>⭐ MISIÓN COMPLETADA ⭐</h2>
+        <p>Gracias por compartir tu historia conmigo hoy. Guardemos esta aventura para seguir acompañándote mejor.</p>
+        <div id="summary"></div>
+        <div id="save-status" class="save-status"></div>
+        <button type="button" id="save-btn" class="main-action">Guardar en Excel</button>
+        <a class="download-link" href="/download">Descargar Excel</a>
+      </div>
+    </section>
+  </main>
+
+  <nav class="nav">
+    <button type="button" id="prev-btn">← Atrás</button>
+    <span id="chapterTitle">Bienvenidx</span>
+    <button type="button" id="next-btn">¡Comencemos! →</button>
+  </nav>
+</div>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

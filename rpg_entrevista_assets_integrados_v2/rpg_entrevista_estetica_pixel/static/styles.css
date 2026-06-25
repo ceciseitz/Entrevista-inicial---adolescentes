@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+:root{--ink:#2e2133;--paper:#fff0cf;--wood:#7d4c2d;--deep:#2b1b14;--purple:#7b55a6;--lav:#d9c1ef;--gold:#e8b952;}
+*{box-sizing:border-box} body{margin:0;height:100vh;overflow:hidden;background:#101017;color:var(--ink);font-family:'Trebuchet MS',Arial,sans-serif}.app{height:100vh;display:grid;grid-template-rows:58px 1fr 72px}.hud,.nav{z-index:10;background:linear-gradient(90deg,#2b1b14,#4a305f);border-bottom:4px solid #120b08;color:#fff0cf;display:flex;align-items:center;justify-content:space-between;padding:0 18px}.nav{border-top:4px solid #120b08;border-bottom:0}.hud-left,.hud-right,#chapterTitle,.nav button,.main-action,.download-link,h1,h2{font-family:'Press Start 2P',cursive}.hud-left,.hud-right,#chapterTitle{font-size:12px}.progress{display:flex;gap:7px}.dot{width:12px;height:12px;border-radius:50%;background:#cbb896;border:2px solid #120b08}.dot.active{background:var(--gold)}.slides{position:relative;overflow:hidden}.page{position:absolute;inset:0;display:none;background-size:cover;background-position:center;animation:fade .2s ease-out}.page.active{display:block}@keyframes fade{from{opacity:.4;transform:translateX(12px)}to{opacity:1;transform:none}}
+.page-welcome{background-image:url('/static/assets/bg1_welcome.png')}.page-character{background-image:url('/static/assets/bg2_character.png')}.page-status{background-image:url('/static/assets/bg3_status.png')}.page-inventory{background-image:url('/static/assets/bg4_inventory.png')}.page-map{background-image:url('/static/assets/bg5_map.png')}.page-myths{background-image:url('/static/assets/bg6_missions.png')}.page-missions{background-image:url('/static/assets/bg7_rewards.png')}.page-final{background-image:url('/static/assets/bg8_ending.png')}
+.overlay,.panel{position:absolute;background:rgba(255,240,207,.88);border:5px solid var(--wood);box-shadow:inset 0 0 0 4px rgba(255,255,255,.35),0 7px 0 rgba(43,27,20,.65);border-radius:22px;padding:20px}.welcome-overlay{left:27%;top:9%;width:52%;min-height:62%;text-align:center;background:rgba(255,230,185,.08);border:0;box-shadow:none}.welcome-overlay h1{font-size:42px;line-height:1.4;margin:0 0 16px;color:#302335;text-shadow:2px 2px #f7dca5}.subtitle{font-family:'Press Start 2P';font-size:13px;color:#724695}.body-text{font-size:23px;line-height:1.45;max-width:650px;margin:28px auto}.ribbon{background:var(--purple);color:#fff2d0;border:4px solid #4a315c;border-radius:14px;padding:14px;margin:0 auto 22px;max-width:550px;font-weight:900}.rule-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}.rule-row div{background:rgba(255,240,207,.72);border:3px solid #b9885b;border-radius:14px;padding:12px}.rule-row b{display:block;font-size:32px}.rule-row span{display:block;font-size:14px}.character-panel{left:7%;top:6%;right:7%;bottom:6%;display:grid;grid-template-columns:30% 1fr;gap:18px}.avatar-zone{text-align:center}.avatar-frame{height:55%;border:4px solid #b9885b;border-radius:18px;background:#f0dec5;display:flex;align-items:center;justify-content:center;overflow:hidden}.avatar-frame img{height:115%;object-fit:contain}.mini-title{font-weight:900}.heart-picker button{font-size:30px;background:transparent;border:0;opacity:.25;filter:grayscale(1);cursor:pointer}.heart-picker button.selected{opacity:1;filter:none;transform:scale(1.15)}.fields-zone{overflow:auto;padding-right:6px}.fields-zone h2,.panel h2{text-align:center;font-size:22px;line-height:1.4;margin:0 0 12px}label{font-weight:900;display:block;margin:8px 0 5px}input,textarea{width:100%;border:3px solid #b9885b;border-radius:10px;background:#fffaf0;padding:9px;font:inherit}textarea{min-height:58px;resize:vertical}.status-panel{left:9%;right:9%;top:5%;bottom:5%;overflow:auto}.stats{display:grid;grid-template-columns:1fr 1fr;gap:11px}.stat{background:rgba(255,250,240,.7);border:3px solid #b9885b;border-radius:15px;padding:10px;display:grid;grid-template-columns:45px 1fr 1fr 42px;align-items:center;gap:8px}.stat span{font-size:30px}.stat input{accent-color:#7b55a6}.stat output{font-weight:900;background:#d9c1ef;border:2px solid #724695;border-radius:8px;padding:4px;text-align:center}.inventory-panel,.map-panel,.myth-panel,.missions-panel,.final-panel{left:9%;right:9%;top:7%;bottom:7%;overflow:auto}.two-textareas,.place-grid,.mission-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.two-textareas textarea{min-height:320px}.place-grid textarea{min-height:110px}.myths{display:grid;grid-template-columns:1fr 1fr;gap:10px}.myth{background:rgba(255,250,240,.72);border:3px solid #b9885b;border-radius:13px;padding:10px;display:grid;grid-template-columns:1fr auto auto auto;align-items:center;gap:6px}.myth button{font:inherit;font-weight:900;border:3px solid var(--deep);border-radius:10px;background:#e8c78e;padding:7px;cursor:pointer}.myth button.selected{background:var(--purple);color:white}.mission-grid label{background:rgba(255,250,240,.72);border:3px solid #b9885b;border-radius:13px;padding:12px}.mission-grid input{width:auto;transform:scale(1.25);margin-right:8px}.final-panel{left:15%;right:15%;top:12%;bottom:12%;text-align:center;background:rgba(255,240,207,.92)}.main-action,.download-link,.nav button{cursor:pointer;border:4px solid var(--deep);background:var(--purple);color:#fff2d0;border-radius:14px;box-shadow:0 5px 0 #160d0a;padding:12px 18px;text-decoration:none;display:inline-block;margin:8px;font-size:11px}.download-link{background:#e8c78e;color:var(--deep)}.save-status{font-weight:900;margin:12px}.nav button:disabled{opacity:.4}@media(max-width:900px){.welcome-overlay{left:5%;width:90%;top:5%}.character-panel{grid-template-columns:1fr;overflow:auto}.avatar-frame{height:260px}.stats,.two-textareas,.place-grid,.myths,.mission-grid{grid-template-columns:1fr}.stat{grid-template-columns:40px 1fr}.hud-left,.hud-right,#chapterTitle{font-size:9px}}
+
+/* Cartel principal */
+.wood-sign {
+  top: 52px;
+  left: 56%;
+  transform: translateX(-50%);
+  width: 760px;
+  height: 430px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  text-align: center;
+  padding: 55px 70px 0;
+}
+
+.wood-sign h1 {
+  margin: 0 0 12px;
+  line-height: 1.15;
+  font-size: 38px;
+}
+
+.wood-sign h2 {
+  margin: 0 0 18px;
+  font-size: 12px;
+}
+
+.wood-sign p {
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.4;
+  font-size: 18px;
+}
+
+/* Cinta morada */
+.purple-ribbon {
+  position: absolute !important;
+
+  left: 56% !important;      /* Igual que el cartel */
+  top: 520px !important;     /* Mucho más abajo */
+
+  transform: translateX(-50%) !important;
+
+  width: 430px !important;
+  padding: 14px 18px !important;
+
+  font-size: 11px !important;
+  text-align: center !important;
+
+  z-index: 30;
+}
+
+/* Ocultar tarjetas */
+.rule-card {
+  display: none !important;
+} 
+
+/* Mapa interactivo: vuelve a funcionar por puntos clickeables */
+.page-map .map-panel{display:none;}
+.map-storage{display:none;}
+.map-hotspots{
+  position:absolute;
+  left:7.5%;
+  right:7.5%;
+  top:7%;
+  bottom:15%;
+}
+.map-point{
+  position:absolute;
+  transform:translate(-50%,-50%);
+  padding: 9px 12px;
+  border-radius: 999px;
+  border: 4px solid #2b1b14;
+  background: rgba(123,85,166,.92);
+  color:#fff2d0;
+  font-family:'Press Start 2P',cursive;
+  font-size: 10px;
+  box-shadow:0 5px 0 rgba(43,27,20,.72);
+  z-index:3;
+  white-space:nowrap;
+}
+.map-point.active,
+.map-point:hover{
+  background:#e8c78e;
+  color:#2b1b14;
+}
+.map-question-card{
+  position:absolute;
+  left: 23%;
+  right: 23%;
+  bottom: 11%;
+  min-height: 150px;
+  background: rgba(255,240,207,.93);
+  border: 5px solid var(--wood);
+  box-shadow: inset 0 0 0 4px rgba(255,255,255,.35),0 7px 0 rgba(43,27,20,.65);
+  border-radius: 18px;
+  padding: 14px 18px;
+  z-index:4;
+}
+.map-question-card h2{
+  text-align:left;
+  font-size: 16px;
+  margin: 0 0 8px;
+}
+.map-question-card p{
+  margin: 0 0 8px;
+  font-weight: 900;
+}
+.map-question-card textarea{
+  min-height: 74px;
+  background:rgba(255,250,240,.92);
+}
+
+@media(max-width:900px){
+  .welcome-overlay .rule-row{left:0;right:0;top:100%;grid-template-columns:1fr;}
+  .map-question-card{left:5%;right:5%;bottom:9%;}
+  .map-point{font-size:8px;padding:7px 9px;}
+}
